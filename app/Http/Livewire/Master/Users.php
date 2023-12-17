@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Master;
 
+use App\Models\Admin;
 use App\Models\Bagian;
 use App\Models\Unit;
 use App\Models\User;
@@ -46,8 +47,6 @@ class Users extends Component
                 'name' => 'required',
                 'username' => 'required',
                 'password' => 'required',
-                'bagian' => 'required',
-                'unit' => 'required',
             ]);
 
             $user = User::create([
@@ -57,6 +56,10 @@ class Users extends Component
                     'bagian' => $this->bagian,
                     'unit' => $this->unit,
                 ]);
+
+            Admin::create([
+                'user_id' => $user->id
+            ]);
 
             $user->assignRole($this->role);
 
@@ -68,8 +71,6 @@ class Users extends Component
                 'name' => 'required',
                 'username' => 'required',
                 'password' => 'required',
-                'bagian' => 'required',
-                'unit' => 'required',
             ]);
 
             $this->sendAlert('error', $th->getMessage(), 'top-end');
@@ -101,8 +102,6 @@ class Users extends Component
             $validate = $this->validate([
                 'name' => 'required',
                 'username' => 'required',
-                'bagian' => 'required',
-                'unit' => 'required',
             ]);
 
             $user = User::find($this->idData);

@@ -22,8 +22,36 @@
                 </a>
             </li>
         </ul>
+        @can('manage_logbook')
+        <ul class="">
+            <li class="relative px-6 py-3">
+                @if (request()->routeIs('logbook') || request()->routeIs('logbook_create') | request()->routeIs('logbook_detail') )
+                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                        aria-hidden="true"></span>
+                @endif
+                <a class="inline-flex items-center w-full text-sm font-semibold @if (request()->routeIs('logbook') || request()->routeIs('logbook_create')) text-gray-800 dark:text-gray-100 @endif
+                    dark:hover:text-gray-200 transition-colors duration-150 hover:text-gray-800 "
+                    @if (auth()->user()->hasRole('Logbook Verifikator'))
+                        href="{{ route('logbook') }}"
+                    @else
+                        href="{{ route('logbook_create') }}"
+                    @endif>
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                      </svg>
+                      
+                    <span class="ml-4">{{ __('Logbook') }}</span>
+                </a>
+            </li>
+        </ul>
+        @endcan
         <ul>
+            
             <li x-data="{menuAdmin:false}" class="relative px-6 py-3  text-gray-800 dark:text-gray-100">
+                @if (request()->routeIs('admin_permission') || request()->routeIs('admin_users') || request()->routeIs('admin_unit') || request()->routeIs('admin_bagian') || request()->routeIs('admin_roles') )
+                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                        aria-hidden="true"></span>
+                @endif
                 <button
                     class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     @click="menuAdmin=!menuAdmin" aria-haspopup="true">
@@ -78,6 +106,12 @@
                             hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full"
                                 href="{{ route('admin_permission') }}">{{ __('Permissions') }}</a>
+                        </li>
+                        <li class="px-2 py-1 transition-colors duration-150 @if (request()->
+                            routeIs('admin_jam_kerja')) text-gray-800 dark:text-gray-100 @endif
+                            hover:text-gray-800 dark:hover:text-gray-200">
+                            <a class="w-full"
+                                href="{{ route('admin_jam_kerja') }}">{{ __('Jam Kerja') }}</a>
                         </li>
                     </ul>
                 </template>

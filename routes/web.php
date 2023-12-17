@@ -31,12 +31,18 @@ Route::get('/home', App\Http\Livewire\HomeLivewire::class)->name('home')->middle
 Route::get('/profile/{userID}', App\Http\Livewire\ProfileLivewire::class)->name('profile');
 Route::get('/stats', App\Http\Livewire\StatsLivewire::class)->name('stats')->middleware('auth');
 
+//Logbook
+Route::get('/logbook', App\Http\Livewire\Logbook\LogbookIndex::class)->name('logbook')->middleware('auth');
+Route::get('/logbook/detail/{uid}', App\Http\Livewire\Logbook\LogbookDetail::class)->name('logbook_detail')->middleware('auth');
+Route::get('/logbook/create', App\Http\Livewire\Logbook\LogbookCreate::class)->name('logbook_create')->middleware('auth');
+
 //Admin - Clients
 Route::get('/admin/users', App\Http\Livewire\Master\Users::class)->name('admin_users')->middleware('auth');
 Route::get('/admin/unit', App\Http\Livewire\Master\KepalaUnit::class)->name('admin_unit')->middleware('admin');
 Route::get('/admin/bagian', App\Http\Livewire\Master\KepalaBagian::class)->name('admin_bagian')->middleware('admin');
 Route::get('/admin/role', App\Http\Livewire\Master\Roles::class)->name('admin_roles')->middleware('admin');
 Route::get('/admin/permission', App\Http\Livewire\Master\Permissions::class)->name('admin_permission')->middleware('admin');
+Route::get('/admin/jam', App\Http\Livewire\Master\JamKerja::class)->name('admin_jam_kerja')->middleware('admin');
 Route::get('/notifications', App\Http\Livewire\CentralNotificationsLivewire::class)->name('central_notifications')->middleware('auth');
 
 Route::get('/exit', function () {

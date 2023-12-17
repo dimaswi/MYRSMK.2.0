@@ -1,4 +1,8 @@
 <div>
+
+    @section('metas')
+    <title>{{ __('Users') }}</title>
+@endsection
     <section class="mt-10">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
@@ -31,7 +35,7 @@
                             </svg>
 
 
-                            <span>Unit</span>
+                            <span>Users</span>
                         </button>
                         <!-- END MODAL TAMBAH -->
 
@@ -122,7 +126,7 @@
                                         <div class="mt-4">
                                             <label for=""
                                                 class="block text-sm text-gray-700 capitalize dark:text-gray-200">Role <span class="text-red-500">*</span></label>
-                                            <select wire:model="role" id="countries"
+                                            <select multiple wire:model="role" id="countries"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option value="0" selected>Role</option>
                                                 @foreach ($roles as $value)
@@ -167,7 +171,7 @@
                                         <div class="flex justify-end mt-6">
                                             <button type="submit" @click="modelOpen = false"
                                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
-                                                Tambah Unit
+                                                Tambah User
                                             </button>
                                         </div>
                                     </form>
@@ -251,7 +255,7 @@
                             <div class="flex items-center justify-between space-x-4">
 
                                 <h1 class="text-xl font-medium text-gray-800 ">Update
-                                    Unit</h1>
+                                    Users</h1>
 
 
                                 <button @click="showModal = false" wire:click="close"
@@ -276,7 +280,7 @@
                                     <label for="user name"
                                         class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama
                                          <span class="text-red-500">*</span></label>
-                                    <input wire:model="name" placeholder="Masukan Nama Unit" type="text"
+                                    <input wire:model="name" placeholder="Masukan Nama User" type="text"
                                         class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
                                     @error('name')
                                         <span class="text-red-300">{{ $message }}</span>
@@ -286,7 +290,7 @@
                                 <div class="mt-4">
                                     <label for=""
                                         class="block text-sm text-gray-700 capitalize dark:text-gray-200">Username<span class="text-red-500">*</span></label>
-                                    <input wire:model="username" placeholder="Masukan Nama Kepala Unit"
+                                    <input wire:model="username" placeholder="Masukan Username"
                                         type="text"
                                         class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
                                     @error('username')
@@ -297,7 +301,7 @@
                                 <div class="mt-4">
                                     <label for=""
                                         class="block text-sm text-gray-700 capitalize dark:text-gray-200">Handphone <span class="text-red-500">*</span></label>
-                                    <input wire:model="phone" placeholder="Masukan Kode Unit" type="number"
+                                    <input wire:model="phone" placeholder="Masukan Nomor WA" type="number"
                                         class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
                                     @error('phone')
                                         <span class="text-red-300">{{ $message }}</span>
@@ -313,7 +317,7 @@
                                         <option value="inactive" selected>Inactive</option>
 
                                     </select>
-                                    @error('unit')
+                                    @error('status')
                                         <span class="text-red-300">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -321,7 +325,7 @@
                                 <div class="mt-4">
                                             <label for=""
                                                 class="block text-sm text-gray-700 capitalize dark:text-gray-200">Role <span class="text-red-500">*</span></label>
-                                            <select wire:model="role" id="countries"
+                                            <select multiple wire:model="role" id="countries"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option value="0" selected>Role</option>
                                                 @foreach ($roles as $value)
@@ -350,7 +354,7 @@
 
                                 <div class="mt-4">
                                     <label for=""
-                                        class="block text-sm text-gray-700 capitalize dark:text-gray-200">Unit <span class="text-red-500">*</span></label>
+                                        class="block text-sm text-gray-700 capitalize dark:text-gray-200">Bagian <span class="text-red-500">*</span></label>
                                     <select wire:model="bagian" id="countries"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="0" selected>Kepala Bagian</option>

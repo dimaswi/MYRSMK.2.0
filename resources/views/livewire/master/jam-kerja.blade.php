@@ -1,6 +1,6 @@
 <div>
     @section('metas')
-        <title>{{ __('Kepala Bagian') }}</title>
+        <title>{{ __('Jam Kerja') }}</title>
     @endsection
     <section class="mt-10">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
@@ -32,7 +32,7 @@
                                       </svg>
                                       
                             
-                                    <span>Bagian</span>
+                                    <span>Jam Kerja</span>
                                 </button>
                                 <!-- END MODAL TAMBAH -->
                             
@@ -59,7 +59,7 @@
                                             class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
                                         >
                                             <div class="flex items-center justify-between space-x-4">
-                                                <h1 class="text-xl font-medium text-gray-800 ">Tambah Bagian Baru</h1>
+                                                <h1 class="text-xl font-medium text-gray-800 ">Tambah Jam Kerja Baru</h1>
                             
                                                 <button @click="modelOpen = false" class="text-gray-600 focus:outline-none hover:text-gray-700">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -69,37 +69,36 @@
                                             </div>
                             
                                             <p class="mt-2 text-sm text-gray-500 ">
-                                                Anda dapat menambahkan bagian baru dimodal ini.
+                                                Anda dapat menambahkan jam kerja baru dimodal ini.
                                             </p>
                             
                                             <form class="mt-5" wire:submit.prevent="save">
                                                 <div>
-                                                    <label for="user name" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama Bagian <span class="text-red-500">*</span></label>
-                                                    <input wire:model="nama" placeholder="Masukan Nama Bagian" type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                                                    @error('nama')
+                                                    <label for="user name" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Shift <span class="text-red-500">*</span></label>
+                                                    <select wire:model="shift"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">
+                                                        <option value="" selected>Pilih Shift</option>
+                                                        <option value="Manajemen">Manejemen</option>
+                                                        <option value="Pagi">Pagi</option>
+                                                        <option value="Siang">Siang</option>
+                                                        <option value="Malam">Malam</option>
+                                                    </select>
+                                                    @error('shift')
                                                         <span class="text-red-300">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                             
                                                 <div class="mt-4">
-                                                    <label for="email" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama Kepala Bagian <span class="text-red-500">*</span></label>
-                                                    <input wire:model="kepala" placeholder="Masukan Nama Kepala Bagian" type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                                                    @error('kepala')
-                                                        <span class="text-red-300">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                            
-                                                <div class="mt-4">
-                                                    <label for="email" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Kode Bagian <span class="text-red-500">*</span></label>
-                                                    <input wire:model="kode" placeholder="Masukan Kode Bagian" type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                                                    @error('kode')
+                                                    <label for="email" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Jam Kerja <span class="text-red-500">*</span></label>
+                                                    <input wire:model="jam_kerja" placeholder="Masukan Jam Kerja" type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                                                    @error('jam_kerja')
                                                         <span class="text-red-300">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 
                                                 <div class="flex justify-end mt-6">
                                                     <button type="submit" @click="modelOpen = false" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
-                                                        Tambah User
+                                                        Tambah Jam Kerja
                                                     </button>
                                                 </div>
                                             </form>
@@ -119,23 +118,17 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-4 py-3">Nama Unit</th>
-                                <th scope="col" class="px-4 py-3">Kepala Unit</th>
-                                <th scope="col" class="px-4 py-3"><center>Kode</center></th>
-                                <th scope="col" class="px-4 py-3">Last update</th>
-                                <th scope="col" class="px-4 py-3">
+                                <th scope="col" class="px-4 py-3">Jam Kerja</th>
+                                <th scope="col" class="px-4 py-3">Shift</th>
                                     <span class="sr-only">Actions</span>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bagian as $key => $value)
+                            @foreach ($jam_kerjas as $key => $value)
                                 <tr class="border-b dark:border-gray-700">
-                                    <td class="px-4 py-3">{{ $value->nama }}</td>
-                                    <td class="px-4 py-3 text-green-500">
-                                        {{ $value->kepala }}</td>
-                                    <td class="px-4 py-3">{{ $value->kode }}</td>
-                                    <td class="px-4 py-3">{{ $value->updated_at }}</td>
+                                    <td class="px-4 py-3">{{ $value->jam_kerja }}</td>
+                                    <td class="px-4 py-3">{{ $value->shift }}</td>
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         <center>
                                             <button wire:click="edit({{ $value->id }})" @click="showModal =!showModal" class="px-3 py-1 bg-yellow-500 text-white rounded">
@@ -177,7 +170,7 @@
                             <div class="flex items-center justify-between space-x-4">
 
                                 <h1 class="text-xl font-medium text-gray-800 ">Update
-                                    Bagian</h1>
+                                    Jam Kerja</h1>
 
 
                                 <button @click="showModal = false" wire:click="close"
@@ -194,53 +187,33 @@
 
 
                             <p class="mt-2 text-sm text-gray-500 ">
-                                Anda dapat mengupdate bagian dimodal ini.
+                                Anda dapat mengupdate jam kerja dimodal ini.
                             </p>
 
                             <form class="mt-5" wire:submit.prevent="update">
 
-                                <input type="hidden" wire:modal="$idData">
+                                <input type="hidden" wire:modal="idData">
 
                                 <div>
-                                    <label for="user name"
-                                        class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama
-                                        Bagian <span
-                                            class="text-red-500">*</span></label>
-                                    <input wire:model="nama"
-                                        placeholder="Masukan Nama Unit" type="text"
-                                        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                                    @error('nama')
-                                        <span
-                                            class="text-red-300">{{ $message }}</span>
+                                    <label for="user name" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Shift <span class="text-red-500">*</span></label>
+                                    <select wire:model="shift"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">
+                                        <option value="" selected>Pilih Shift</option>
+                                        <option value="Manajemen">Manejemen</option>
+                                        <option value="Pagi">Pagi</option>
+                                        <option value="Siang">Siang</option>
+                                        <option value="Malam">Malam</option>
+                                    </select>
+                                    @error('shift')
+                                        <span class="text-red-300">{{ $message }}</span>
                                     @enderror
                                 </div>
-
+            
                                 <div class="mt-4">
-                                    <label for="email"
-                                        class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama
-                                        Kepala Bagian <span
-                                            class="text-red-500">*</span></label>
-                                    <input wire:model="kepala"
-                                        placeholder="Masukan Nama Kepala Unit"
-                                        type="text"
-                                        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                                    @error('kepala')
-                                        <span
-                                            class="text-red-300">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="mt-4">
-                                    <label for="email"
-                                        class="block text-sm text-gray-700 capitalize dark:text-gray-200">Kode
-                                        Bagian <span
-                                            class="text-red-500">*</span></label>
-                                    <input wire:model="kode"
-                                        placeholder="Masukan Kode Unit" type="text"
-                                        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                                    @error('kode')
-                                        <span
-                                            class="text-red-300">{{ $message }}</span>
+                                    <label for="email" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Jam Kerja <span class="text-red-500">*</span></label>
+                                    <input wire:model="jam_kerja" placeholder="Masukan Jam Kerja" type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                                    @error('jam_kerja')
+                                        <span class="text-red-300">{{ $message }}</span>
                                     @enderror
                                 </div>
 
@@ -272,7 +245,7 @@
                             </select>
                         </div>
                     </div>
-                    {{ $bagian->links() }}
+                    {{ $jam_kerjas->links() }}
                 </div>
             </div>
         </div>
