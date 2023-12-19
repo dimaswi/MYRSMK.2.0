@@ -45,6 +45,7 @@
             </li>
         </ul>
         @endcan
+        @can('manage_users')
         <ul>
             
             <li x-data="{menuAdmin:false}" class="relative px-6 py-3  text-gray-800 dark:text-gray-100">
@@ -116,7 +117,8 @@
                     </ul>
                 </template>
             </li>
-        </ul>
+        </ul> 
+        @endcan
     </div>
 
 </aside>
