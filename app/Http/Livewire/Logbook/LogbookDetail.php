@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Logbook;
 use App\Models\Logbook;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Illuminate\Support\Facades\Gate;
 
 class LogbookDetail extends Component
 {
@@ -14,14 +15,13 @@ class LogbookDetail extends Component
     public $nilaiTugas;
     public $nilaiTugasTambahan;
     public $nilaiBukanTugas;
-
-    public function mount($uid)
-    {
-        $this->uid = $uid;
-    }
     
     public function render()
     {
+        if (! Gate::allows('manage_logbook_veifikator')) {
+            return abort(401);
+        }
+
         return view('livewire.logbook.logbook-detail', [
             'datas' => Logbook::where('uid', $this->uid)->get(),
             'data' => Logbook::where('uid', $this->uid)->first(),

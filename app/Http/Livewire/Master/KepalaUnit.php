@@ -7,7 +7,7 @@ use Livewire\Component;
 use App\Models\Unit;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithPagination;
-
+use Illuminate\Support\Facades\Gate;
 
 class KepalaUnit extends Component
 {
@@ -22,6 +22,11 @@ class KepalaUnit extends Component
     public $idData;
     public function render()
     {
+        if (! Gate::allows('manage_users')) {
+            return abort(401);
+        }
+
+
         return view('livewire.master.kepala-unit', [
             'unit'=> Unit::search($this->search)->paginate($this->perPage),
             'listbagian' => Bagian::all(),

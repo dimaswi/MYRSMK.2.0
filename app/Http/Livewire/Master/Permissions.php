@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Permission;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Permission as ModelPermission;
+use Illuminate\Support\Facades\Gate;
 
 class Permissions extends Component
 {
@@ -18,6 +19,10 @@ class Permissions extends Component
     public $idData;
     public function render()
     {
+        if (! Gate::allows('manage_users')) {
+            return abort(401);
+        }
+
         return view('livewire.master.permissions', [
             'permission' => ModelPermission::search($this->search)->paginate($this->perPage),
         ]);

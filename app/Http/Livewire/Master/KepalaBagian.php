@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Master;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Bagian;
+use Illuminate\Support\Facades\Gate;
 
 class KepalaBagian extends Component
 {
@@ -17,6 +18,10 @@ class KepalaBagian extends Component
     public $idData;
     public function render()
     {
+        if (! Gate::allows('manage_users')) {
+            return abort(401);
+        }
+
         return view('livewire.master.kepala-bagian', [
             'bagian' => Bagian::search($this->search)->paginate($this->perPage),
         ]);

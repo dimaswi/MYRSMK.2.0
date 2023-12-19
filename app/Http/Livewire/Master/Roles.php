@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
 use App\Models\Permission as ModelPermission;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class Roles extends Component
 {    
@@ -23,6 +24,9 @@ class Roles extends Component
 
     public function render()
     {
+        if (! Gate::allows('manage_users')) {
+            return abort(401);
+        }
 
         return view('livewire.master.roles', [
             'role' => ModelRole::search($this->search)->paginate($this->perPage),

@@ -12,6 +12,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class Users extends Component
 {
@@ -30,6 +31,9 @@ class Users extends Component
     public $status;
     public function render()
     {
+        if (! Gate::allows('manage_users')) {
+            return abort(401);
+        }
 
         return view('livewire.master.users', [
             'user' => User::search($this->search)->paginate($this->perPage),

@@ -6,6 +6,7 @@ use App\Models\JamKerja as ModelsJamKerja;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Gate;
 
 class JamKerja extends Component
 {
@@ -19,6 +20,10 @@ class JamKerja extends Component
 
     public function render()
     {
+        if (! Gate::allows('manage_users')) {
+            return abort(401);
+        }
+
         return view('livewire.master.jam-kerja', [
             'jam_kerjas' => ModelsJamKerja::search($this->search)->orderBy('id', 'desc')->paginate($this->perPage),
         ]);
