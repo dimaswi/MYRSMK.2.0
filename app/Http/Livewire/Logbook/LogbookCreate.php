@@ -56,7 +56,7 @@ class LogbookCreate extends Component
 
     public function store()
     {
-        $cek_jam = Logbook::where('jam_kerja', $this->jam_kerja)->whereDate('created_at', Carbon::today())->first();
+        $cek_jam = Logbook::where('jam_kerja', $this->jam_kerja)->where('nama', auth()->user()->name)->whereDate('created_at', Carbon::today())->first();
         if ($cek_jam === null) {
             try {
                 $validate = $this->validate([
