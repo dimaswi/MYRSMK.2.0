@@ -31,7 +31,7 @@
         </div>
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                {{__('messages.dispositives')}}
+                {{__('Platform')}}
             </h4>
             <canvas id="pie"></canvas>
             <div
@@ -39,7 +39,7 @@
                 <!-- Chart legend -->
                 <div class="flex items-center">
                     <span class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"></span>
-                    <span>Móvil</span>
+                    <span>Mobile</span>
                 </div>
                 <div class="flex items-center">
                     <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
@@ -60,7 +60,7 @@
        var impressions = @json($impressions);
        var users = @json($users);
        var pcs = @json($pcs);
-       var movils = @json($movils);
+       var mobile = @json($movils);
        var tablets = @json($tablets);
        /**
         * For usage, visit Chart.js docs https://www.chartjs.org/docs/latest/
@@ -143,7 +143,7 @@ const pieConfig = {
  data: {
    datasets: [
      {
-       data: [movils, pcs, tablets],
+       data: [mobile, pcs, tablets],
        /**
         * These colors come from Tailwind CSS palette
         * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
@@ -152,7 +152,7 @@ const pieConfig = {
        label: 'Dataset 1',
      },
    ],
-   labels: ['Móvil', 'PC', 'Tablet'],
+   labels: ['Mobile', 'PC', 'Tablet'],
  },
  options: {
    responsive: true,
