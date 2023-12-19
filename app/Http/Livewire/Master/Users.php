@@ -22,7 +22,7 @@ class Users extends Component
     public $name;
     public $username;
     public $phone;
-    public $password;
+    public $password = '12345678';
     public $bagian;
     public $unit;
     public $role;
@@ -50,12 +50,12 @@ class Users extends Component
             ]);
 
             $user = User::create([
-                    'name' => $this->name,
-                    'username' => $this->username,
-                    'password' => Hash::make($this->password),
-                    'bagian' => $this->bagian,
-                    'unit' => $this->unit,
-                ]);
+                'name' => $this->name,
+                'username' => $this->username,
+                'password' => Hash::make($this->password),
+                'bagian' => $this->bagian,
+                'unit' => $this->unit,
+            ]);
 
             Admin::create([
                 'user_id' => $user->id

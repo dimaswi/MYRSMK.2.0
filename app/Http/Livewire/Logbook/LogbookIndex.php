@@ -16,7 +16,7 @@ class LogbookIndex extends Component
     public function render()
     {
         return view('livewire.logbook.logbook-index',[
-            'logbooks' => Logbook::search($this->search)->groupBy('nama')->paginate($this->perpage),
+            'logbooks' => Logbook::search($this->search)->groupBy('uid')->paginate($this->perpage),
         ]);
     }
 

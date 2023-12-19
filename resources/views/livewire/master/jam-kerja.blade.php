@@ -75,14 +75,7 @@
                                             <form class="mt-5" wire:submit.prevent="save">
                                                 <div>
                                                     <label for="user name" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Shift <span class="text-red-500">*</span></label>
-                                                    <select wire:model="shift"
-                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">
-                                                        <option value="" selected>Pilih Shift</option>
-                                                        <option value="Manajemen">Manejemen</option>
-                                                        <option value="Pagi">Pagi</option>
-                                                        <option value="Siang">Siang</option>
-                                                        <option value="Malam">Malam</option>
-                                                    </select>
+                                                    <input wire:model="shift" placeholder="Masukan Shift" type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
                                                     @error('shift')
                                                         <span class="text-red-300">{{ $message }}</span>
                                                     @enderror
@@ -196,14 +189,7 @@
 
                                 <div>
                                     <label for="user name" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Shift <span class="text-red-500">*</span></label>
-                                    <select wire:model="shift"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">
-                                        <option value="" selected>Pilih Shift</option>
-                                        <option value="Manajemen">Manejemen</option>
-                                        <option value="Pagi">Pagi</option>
-                                        <option value="Siang">Siang</option>
-                                        <option value="Malam">Malam</option>
-                                    </select>
+                                    <input wire:model="shift" placeholder="Masukan Shift" type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
                                     @error('shift')
                                         <span class="text-red-300">{{ $message }}</span>
                                     @enderror

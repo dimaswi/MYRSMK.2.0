@@ -10,10 +10,12 @@ use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Str;
 
+
 class LogbookCreate extends Component
 {
     use LivewireAlert;
     public $judul;
+    public $uid;
     public $jenis_shift;
     public $shift;
     public $jam_kerja;
@@ -22,17 +24,27 @@ class LogbookCreate extends Component
     public $unit;
     public $lokasi;
     public $bersama;
+    public $jadwal = [];
 
     public function render()
     {
-        $jadwal_terpakai = Logbook::whereDate('created_at', Carbon::today())->pluck('jam_kerja');
+        if ($this->jenis_shift == "CS JAGA" || $this->jenis_shift == "MALAM" || $this->jenis_shift == "SECURITY MALAM") 
+        {
+            $this->uid = Carbon::now('Asia/Jakarta')->subHour(11)->format('Ymd').auth()->user()->id;
+        } else {
+            $this->uid = Carbon::now('Asia/Jakarta')->format('Ymd').auth()->user()->id;
+        }
+        $jadwal_terpakai = Logbook::whereDate('uid', $this->uid)->pluck('jam_kerja');
+        $this->jadwal = JamKerja::where('shift', $this->jenis_shift)->whereNotIn('jam_kerja', $jadwal_terpakai)->get();
+        // $jam_awal = JamKerja::where('shift', 'Manajemen')->first();
+        // $jam_akhir = JamKerja::where('shift', 'Manajemen')->latest()->first();
+        // $from = substr($jam_awal->jam_kerja,0,5);
+        // $to = substr($jam_akhir->jam_kerja,-5);
 
         return view('livewire.logbook.logbook-create', [
+            'jadwals' => $this->jadwal,
+            'shifts' => JamKerja::groupBy('shift')->get(),
             'logbooks' => Logbook::where('nama', auth()->user()->name)->whereDate('created_at', Carbon::today())->get(),
-            'jadwal_manajemens' => JamKerja::where('shift', 'Manajemen')->whereNotIn('jam_kerja', $jadwal_terpakai)->get(), 
-            'jadwal_pagis' => JamKerja::where('shift', 'Pagi')->whereNotIn('jam_kerja', $jadwal_terpakai)->get(), 
-            'jadwal_siangs' => JamKerja::where('shift', 'Siang')->whereNotIn('jam_kerja', $jadwal_terpakai)->get(), 
-            'jadwal_malams' => JamKerja::where('shift', 'Malam')->whereNotIn('jam_kerja', $jadwal_terpakai)->get(), 
         ]);
     }
 
@@ -45,7 +57,6 @@ class LogbookCreate extends Component
     public function store()
     {
         $cek_jam = Logbook::where('jam_kerja', $this->jam_kerja)->whereDate('created_at', Carbon::today())->first();
-
         if ($cek_jam === null) {
             try {
                 $validate = $this->validate([
@@ -59,7 +70,7 @@ class LogbookCreate extends Component
                 $unit = Unit::where('id', auth()->user()->unit)->first();
 
                 Logbook::create([
-                    'uid' => Carbon::now('Asia/Jakarta')->format('Ymd'),
+                    'uid' => $this->uid,
                     'shift' => $this->shift,
                     'jam_kerja' => $this->jam_kerja,
                     'lokasi' => $this->lokasi,
