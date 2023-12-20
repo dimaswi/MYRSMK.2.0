@@ -16,6 +16,11 @@ class LogbookDetail extends Component
     public $nilaiTugasTambahan;
     public $nilaiBukanTugas;
     
+    public function mount($uid)
+    {
+        $this->uid = $uid;
+    }
+    
     public function render()
     {
         if (! Gate::allows('manage_logbook_veifikator')) {
