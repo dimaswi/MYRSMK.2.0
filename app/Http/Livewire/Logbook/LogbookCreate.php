@@ -28,14 +28,16 @@ class LogbookCreate extends Component
 
     public function render()
     {
+        $jadwal_terpakai = Logbook::where('uid', $this->uid)->where('nama', auth()->user()->name)->pluck('jam_kerja');
         if ($this->jenis_shift == "CS JAGA" || $this->jenis_shift == "MALAM" || $this->jenis_shift == "SECURITY MALAM") 
         {
-            $this->uid = Carbon::now('Asia/Jakarta')->subHour(11)->format('Ymd').auth()->user()->id;
+            $this->uid = Carbon::now('Asia/Jakarta')->subHour(7)->format('Ymd').auth()->user()->id;
         } else {
             $this->uid = Carbon::now('Asia/Jakarta')->format('Ymd').auth()->user()->id;
+            $this->jadwal = JamKerja::where('shift', $this->jenis_shift)
+            ->whereNotIn('jam_kerja', $jadwal_terpakai)
+            ->get();
         }
-        $jadwal_terpakai = Logbook::whereDate('uid', $this->uid)->where('nama', auth()->user()->name)->pluck('jam_kerja');
-        $this->jadwal = JamKerja::where('shift', $this->jenis_shift)->whereNotIn('jam_kerja', $jadwal_terpakai)->get();
         // $jam_awal = JamKerja::where('shift', 'Manajemen')->first();
         // $jam_akhir = JamKerja::where('shift', 'Manajemen')->latest()->first();
         // $from = substr($jam_awal->jam_kerja,0,5);
