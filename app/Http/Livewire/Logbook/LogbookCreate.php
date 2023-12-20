@@ -35,11 +35,13 @@ class LogbookCreate extends Component
             $this->jadwal = JamKerja::where('shift', $this->jenis_shift)
             ->whereNotIn('jam_kerja', $jadwal_terpakai)
             ->get();
+            $logsbooks = Logbook::where('nama', auth()->user()->name)->whereDate('created_at', Carbon::today()->subHour(7))->get();
         } else {
             $this->uid = Carbon::now('Asia/Jakarta')->format('Ymd').auth()->user()->id;
             $this->jadwal = JamKerja::where('shift', $this->jenis_shift)
             ->whereNotIn('jam_kerja', $jadwal_terpakai)
             ->get();
+            $logsbooks = Logbook::where('nama', auth()->user()->name)->whereDate('created_at', Carbon::today())->get();
         }
         // $jam_awal = JamKerja::where('shift', 'Manajemen')->first();
         // $jam_akhir = JamKerja::where('shift', 'Manajemen')->latest()->first();
@@ -49,7 +51,7 @@ class LogbookCreate extends Component
         return view('livewire.logbook.logbook-create', [
             'jadwals' => $this->jadwal,
             'shifts' => JamKerja::groupBy('shift')->get(),
-            'logbooks' => Logbook::where('nama', auth()->user()->name)->whereDate('created_at', Carbon::today())->get(),
+            'logbooks' => $logsbooks,
         ]);
     }
 
