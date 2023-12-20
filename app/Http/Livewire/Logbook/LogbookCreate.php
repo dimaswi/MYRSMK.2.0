@@ -35,7 +35,7 @@ class LogbookCreate extends Component
             $this->jadwal = JamKerja::where('shift', $this->jenis_shift)
             ->whereNotIn('jam_kerja', $jadwal_terpakai)
             ->get();
-            $logsbooks = Logbook::where('nama', auth()->user()->name)->whereDate('created_at', Carbon::today()->addHour(7))->get();
+            $logsbooks = Logbook::where('nama', auth()->user()->name)->whereDate('created_at', Carbon::today()->subHour(7))->get();
         } else {
             $this->uid = Carbon::now('Asia/Jakarta')->format('Ymd').auth()->user()->id;
             $this->jadwal = JamKerja::where('shift', $this->jenis_shift)
