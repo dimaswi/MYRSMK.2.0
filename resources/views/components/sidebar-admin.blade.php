@@ -114,6 +114,12 @@
                             <a class="w-full"
                                 href="{{ route('admin_jam_kerja') }}">{{ __('Jam Kerja') }}</a>
                         </li>
+                        <li class="px-2 py-1 transition-colors duration-150 @if (request()->
+                            routeIs('admin_ip')) text-gray-800 dark:text-gray-100 @endif
+                            hover:text-gray-800 dark:hover:text-gray-200">
+                            <a class="w-full"
+                                href="{{ route('admin_ip') }}">{{ __('IP Info') }}</a>
+                        </li>
                     </ul>
                 </template>
             </li>

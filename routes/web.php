@@ -43,6 +43,7 @@ Route::get('/admin/bagian', App\Http\Livewire\Master\KepalaBagian::class)->name(
 Route::get('/admin/role', App\Http\Livewire\Master\Roles::class)->name('admin_roles')->middleware('admin');
 Route::get('/admin/permission', App\Http\Livewire\Master\Permissions::class)->name('admin_permission')->middleware('admin');
 Route::get('/admin/jam', App\Http\Livewire\Master\JamKerja::class)->name('admin_jam_kerja')->middleware('admin');
+Route::get('/admin/ip', App\Http\Livewire\Admin\IPAddress::class)->name('admin_ip')->middleware('admin');
 Route::get('/notifications', App\Http\Livewire\CentralNotificationsLivewire::class)->name('central_notifications')->middleware('auth');
 
 Route::get('/exit', function () {
