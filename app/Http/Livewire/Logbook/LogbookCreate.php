@@ -29,7 +29,7 @@ class LogbookCreate extends Component
     public function render()
     {
         $jadwal_terpakai = Logbook::where('uid', $this->uid)->where('nama', auth()->user()->name)->pluck('jam_kerja');
-        if ($this->jenis_shift == "CS JAGA" || $this->jenis_shift == "MALAM" || $this->jenis_shift == "SECURITY MALAM") 
+        if ($this->jenis_shift == "CS JAGA" || $this->jenis_shift == "Malam" || $this->jenis_shift == "SECURITY MALAM") 
         {
             $this->uid = Carbon::now('Asia/Jakarta')->subHour(7)->format('Ymd').auth()->user()->id;
             $this->jadwal = JamKerja::where('shift', $this->jenis_shift)
