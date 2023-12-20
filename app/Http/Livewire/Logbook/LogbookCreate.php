@@ -32,6 +32,9 @@ class LogbookCreate extends Component
         if ($this->jenis_shift == "CS JAGA" || $this->jenis_shift == "MALAM" || $this->jenis_shift == "SECURITY MALAM") 
         {
             $this->uid = Carbon::now('Asia/Jakarta')->subHour(7)->format('Ymd').auth()->user()->id;
+            $this->jadwal = JamKerja::where('shift', $this->jenis_shift)
+            ->whereNotIn('jam_kerja', $jadwal_terpakai)
+            ->get();
         } else {
             $this->uid = Carbon::now('Asia/Jakarta')->format('Ymd').auth()->user()->id;
             $this->jadwal = JamKerja::where('shift', $this->jenis_shift)
