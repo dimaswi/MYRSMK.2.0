@@ -58,6 +58,7 @@ class LogbookCreate extends Component
 
     public function store()
     {
+        
         $cek_jam = Logbook::where('jam_kerja', $this->jam_kerja)->where('nama', auth()->user()->name)->whereDate('created_at', Carbon::today())->first();
         if ($cek_jam === null) {
             try {
@@ -70,6 +71,12 @@ class LogbookCreate extends Component
                 ]);
 
                 $unit = Unit::where('id', auth()->user()->unit)->first();
+                
+                if($unit === null) {
+                    $nama_unit = 'Kepala Bagian';
+                } else {
+                    $nama_unit = $unit->nama;
+                }
 
                 Logbook::create([
                     'uid' => $this->uid,
@@ -79,7 +86,7 @@ class LogbookCreate extends Component
                     'bersama' => $this->bersama,
                     'kegiatan' => $this->kegiatan,
                     'nama' => auth()->user()->name,
-                    'unit' => $unit->nama,
+                    'unit' => $nama_unit,
                 ]);
 
                 $this->reset(['jam_kerja', 'lokasi', 'bersama', 'kegiatan']);
