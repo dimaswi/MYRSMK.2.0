@@ -105,12 +105,12 @@
                         <tbody>
                             @foreach ($logbooks as $key => $value)
                                 <tr class="border-b dark:border-gray-700">
-                                    <td class="px-4 py-3">{{ $key + 1 }}</td>
-                                    <td class="px-4 py-3">{{ $value->jam_kerja }}</td>
-                                    <td class="px-4 py-3">{{ $value->kegiatan }}</td>
-                                    <td class="px-4 py-3">{{ $value->lokasi }}</td>
-                                    <td class="px-4 py-3">{{ $value->bersama }}</td>
-                                    <td>
+                                    <td class="px-4 py-3" style="width: 5%">{{ $key + 1 }}</td>
+                                    <td class="px-4 py-3" style="width: 10%">{{ $value->jam_kerja }}</td>
+                                    <td class="px-4 py-3" style="width: 25%">{{ $value->kegiatan }}</td>
+                                    <td class="px-4 py-3" style="width: 10%">{{ $value->lokasi }}</td>
+                                    <td class="px-4 py-3" style="width: 10%">{{ $value->bersama }}</td>
+                                    <td style="width: 10%">
                                         @if ($value->tugas == 0 && $value->bukan_tugas == 0 && $value->tugas_tambahan == 0)
                                             <button wire:click="remove({{ $value->id }})"
                                                 class="px-3 py-1 bg-red-500 text-white rounded">

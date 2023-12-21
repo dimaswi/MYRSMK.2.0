@@ -120,9 +120,9 @@
                         <tbody>
                             @foreach ($jam_kerjas as $key => $value)
                                 <tr class="border-b dark:border-gray-700">
-                                    <td class="px-4 py-3">{{ $value->jam_kerja }}</td>
-                                    <td class="px-4 py-3">{{ $value->shift }}</td>
-                                    <td class="px-4 py-3 flex items-center justify-end">
+                                    <td class="px-4 py-3" style="width: 20%">{{ $value->jam_kerja }}</td>
+                                    <td class="px-4 py-3" style="width: 20%">{{ $value->shift }}</td>
+                                    <td class="px-4 py-3 flex items-center justify-end" style="width: 30%">
                                         <center>
                                             <button wire:click="edit({{ $value->id }})" @click="showModal =!showModal" class="px-3 py-1 bg-yellow-500 text-white rounded">
                                                 Edit

@@ -74,12 +74,12 @@
                             <tbody>
                                 @foreach ($datas as $key => $value)
                                     <tr class="border-b dark:border-gray-700">
-                                        <td class="px-4 py-3">{{ $key+1 }}</td>
-                                        <td class="px-4 py-3">{{ $value->jam_kerja }}</td>
-                                        <td class="px-4 py-3">{{ $value->kegiatan }}</td>
-                                        <td class="px-4 py-3">{{ $value->lokasi }}</td>
-                                        <td class="px-4 py-3">{{ $value->bersama }}</td>
-                                        <td class="px-10 py-3">
+                                        <td class="px-4 py-3" style="width: 1%">{{ $key+1 }}</td>
+                                        <td class="px-4 py-3" style="width: 15% ">{{ $value->jam_kerja }}</td>
+                                        <td class="px-4 py-3" style="width: 24%">{{ $value->kegiatan }}</td>
+                                        <td class="px-4 py-3" style="width: 10%">{{ $value->lokasi }}</td>
+                                        <td class="px-4 py-3" style="width: 10%">{{ $value->bersama }}</td>
+                                        <td class="px-10 py-3" style="width: 15%">
                                             <div class="max-w-full">
                                                 <select wire:click="set($event.target.value, {{ $value->id }})"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">
@@ -109,7 +109,7 @@
                                                 </select>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td style="width: 10%">
                                             @if ($value->tugas == 1)
                                                 <center> <span class="text-sm text-green-400">Tugas Pokok</span>
                                                 </center>

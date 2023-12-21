@@ -1,7 +1,7 @@
 <div>
     @section('metas')
-    <title>{{ __('Kepala Unit') }}</title>
-@endsection
+        <title>{{ __('Kepala Unit') }}</title>
+    @endsection
     <section class="mt-10">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
@@ -156,7 +156,6 @@
                                     <th scope="col" class="px-4 py-3">
                                         <center>Kode</center>
                                     </th>
-                                    <th scope="col" class="px-4 py-3">Last update</th>
                                     <th scope="col" class="px-6 py-3">
                                         <span class="sr-only">Actions</span>
                                     </th>
@@ -165,24 +164,25 @@
                             <tbody>
                                 @foreach ($unit as $key => $value)
                                     <tr class="border-b dark:border-gray-700">
-                                        <td class="px-4 py-3">{{ $value->nama }}</td>
-                                        <td class="px-4 py-3 text-green-500">
-                                            {{ $value->kepala }}</td>
-                                        <td class="px-4 py-3">{{ $value->kode }}</td>
-                                        <td class="px-4 py-3">{{ $value->updated_at }}</td>
-                                        <td class="px-4 py-3 flex items-center justify-end">
+                                        <td class="px-4 py-3" style="width: 40%">{{ $value->nama }}</td>
+                                        <td class="px-4 py-3 text-green-500" style="width: 30%">{{ $value->kepala }}
+                                        </td>
+                                        <td class="px-4 py-3" style="width: 15%">
+                                            <center>{{ $value->kode }}</center>
+                                        </td>
+                                        <td class="px-4 py-3" style="width: 15%">
                                             <center>
-                                                
-                                                    <!-- BUTTON MODAL TAMBAH -->
-                                                    <button wire:click="edit({{ $value->id }})" @click="showModal =!showModal" class="px-3 py-1 bg-yellow-500 text-white rounded">
-                                                        Edit
-                                                    </button>
-                                                    <button wire:click="remove({{ $value->id }})" class="px-3 py-1 bg-red-500 text-white rounded">
-                                                        Hapus
-                                                    </button>
-                                                    <!-- END MODAL TAMBAH -->
-
-                                                </div>
+                                                <!-- BUTTON MODAL TAMBAH -->
+                                                <button wire:click="edit({{ $value->id }})"
+                                                    @click="showModal =!showModal"
+                                                    class="px-3 py-1 text-yellow-600 font-bold">
+                                                    Edit
+                                                </button>
+                                                <button wire:click="remove({{ $value->id }})"
+                                                    class="px-3 py-1 text-red-600 font-bold">
+                                                    Hapus
+                                                </button>
+                                                <!-- END MODAL TAMBAH -->
                                             </center>
                                         </td>
                                     </tr>
@@ -191,146 +191,132 @@
                         </table>
                     </div>
 
-                    <div x-show="showModal" class="fixed inset-0 z-50 overflow-y-auto"
-                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                    <div
-                        class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                        <div  x-show="showModal"
-                            x-transition:enter="transition ease-out duration-300 transform"
-                            x-transition:enter-start="opacity-0"
-                            x-transition:enter-end="opacity-100"
-                            x-transition:leave="transition ease-in duration-200 transform"
-                            x-transition:leave-start="opacity-100"
-                            x-transition:leave-end="opacity-0"
-                            class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40"
-                            aria-hidden="true"></div>
-
-                        <div x-cloak x-show="showModal"
-                            x-transition:enter="transition ease-out duration-300 transform"
-                            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                            x-transition:leave="transition ease-in duration-200 transform"
-                            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                            class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
-                            <div class="flex items-center justify-between space-x-4">
-
-                                <h1 class="text-xl font-medium text-gray-800 ">Update
-                                    Unit</h1>
-
-
-                                <button @click="showModal = false" wire:click="close"
-                                    class="text-gray-600 focus:outline-none hover:text-gray-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="w-6 h-6" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="2"
-                                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </button>
+                    <div x-show="showModal" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title"
+                        role="dialog" aria-modal="true">
+                        <div
+                            class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+                            <div x-show="showModal" x-transition:enter="transition ease-out duration-300 transform"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transition ease-in duration-200 transform"
+                                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true">
                             </div>
 
+                            <div x-cloak x-show="showModal"
+                                x-transition:enter="transition ease-out duration-300 transform"
+                                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                x-transition:leave="transition ease-in duration-200 transform"
+                                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
+                                <div class="flex items-center justify-between space-x-4">
 
-                            <p class="mt-2 text-sm text-gray-500 ">
-                                Anda dapat mengupdate unit dimodal ini.
-                            </p>
+                                    <h1 class="text-xl font-medium text-gray-800 ">Update
+                                        Unit</h1>
 
-                            <form class="mt-5" wire:submit.prevent="update">
 
-                                <input type="hidden" wire:modal="$idData">
-
-                                <div>
-                                    <label for="user name"
-                                        class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama
-                                        Unit <span
-                                            class="text-red-500">*</span></label>
-                                    <input wire:model="nama"
-                                        placeholder="Masukan Nama Unit" type="text"
-                                        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                                    @error('nama')
-                                        <span
-                                            class="text-red-300">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="mt-4">
-                                    <label for="email"
-                                        class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama
-                                        Kepala Unit <span
-                                            class="text-red-500">*</span></label>
-                                    <input wire:model="kepala"
-                                        placeholder="Masukan Nama Kepala Unit"
-                                        type="text"
-                                        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                                    @error('kepala')
-                                        <span
-                                            class="text-red-300">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="mt-4">
-                                    <label for="email"
-                                        class="block text-sm text-gray-700 capitalize dark:text-gray-200">Kode
-                                        Unit <span
-                                            class="text-red-500">*</span></label>
-                                    <input wire:model="kode"
-                                        placeholder="Masukan Kode Unit" type="text"
-                                        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                                    @error('kode')
-                                        <span
-                                            class="text-red-300">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="mt-4">
-                                    <label for="email"
-                                        class="block text-sm text-gray-700 capitalize dark:text-gray-200">Kepala Bagian <span
-                                            class="text-red-500">*</span></label>
-                                    <select wire:model="bagian" id="countries"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected>Kepala Bagian</option>
-                                        @foreach ($listbagian as $value)
-                                            <option value="{{ $value->id }}">
-                                                {{ $value->kepala }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('bagian')
-                                        <span
-                                            class="text-red-300">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="flex justify-end mt-6">
-                                    <button type="submit" @click="showModal = false"
-                                        class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-yellow-500 rounded-md dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:bg-yellow-700 hover:bg-yellow-600 focus:outline-none focus:bg-yellow-500 focus:ring focus:ring-yellow-300 focus:ring-opacity-50">
-                                        Update
+                                    <button @click="showModal = false" wire:click="close"
+                                        class="text-gray-600 focus:outline-none hover:text-gray-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
                                     </button>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="py-4 px-3">
-                    <div class="flex ">
-                        <div class="flex space-x-4 items-center mb-3">
-                            <label class="w-32 text-sm font-medium text-gray-900">Per Page</label>
-                            <select wire:model.live="perPage"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>
+
+                                <p class="mt-2 text-sm text-gray-500 ">
+                                    Anda dapat mengupdate unit dimodal ini.
+                                </p>
+
+                                <form class="mt-5" wire:submit.prevent="update">
+
+                                    <input type="hidden" wire:modal="$idData">
+
+                                    <div>
+                                        <label for="user name"
+                                            class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama
+                                            Unit <span class="text-red-500">*</span></label>
+                                        <input wire:model="nama" placeholder="Masukan Nama Unit" type="text"
+                                            class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                                        @error('nama')
+                                            <span class="text-red-300">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <label for="email"
+                                            class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama
+                                            Kepala Unit <span class="text-red-500">*</span></label>
+                                        <input wire:model="kepala" placeholder="Masukan Nama Kepala Unit"
+                                            type="text"
+                                            class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                                        @error('kepala')
+                                            <span class="text-red-300">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <label for="email"
+                                            class="block text-sm text-gray-700 capitalize dark:text-gray-200">Kode
+                                            Unit <span class="text-red-500">*</span></label>
+                                        <input wire:model="kode" placeholder="Masukan Kode Unit" type="text"
+                                            class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                                        @error('kode')
+                                            <span class="text-red-300">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <label for="email"
+                                            class="block text-sm text-gray-700 capitalize dark:text-gray-200">Kepala
+                                            Bagian
+                                            <span class="text-red-500">*</span></label>
+                                        <select wire:model="bagian" id="countries"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option selected>Kepala Bagian</option>
+                                            @foreach ($listbagian as $value)
+                                                <option value="{{ $value->id }}">
+                                                    {{ $value->kepala }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('bagian')
+                                            <span class="text-red-300">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="flex justify-end mt-6">
+                                        <button type="submit" @click="showModal = false"
+                                            class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-yellow-500 rounded-md dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:bg-yellow-700 hover:bg-yellow-600 focus:outline-none focus:bg-yellow-500 focus:ring focus:ring-yellow-300 focus:ring-opacity-50">
+                                            Update
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    {{ $unit->links() }}
+
+                    <div class="py-4 px-3">
+                        <div class="flex ">
+                            <div class="flex space-x-4 items-center mb-3">
+                                <label class="w-32 text-sm font-medium text-gray-900">Per Page</label>
+                                <select wire:model.live="perPage"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+                        {{ $unit->links() }}
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
 
 </div>

@@ -54,12 +54,12 @@
                         <tbody>
                             @foreach ($logbooks as $key => $value)
                                 <tr class="border-b dark:border-gray-700">
-                                    <td class="px-4 py-3">{{ $value->created_at }}</td>
-                                    <td class="px-4 py-3">{{ $value->nama }}</td>
-                                    <td class="px-4 py-3">{{ $value->unit }}</td>
-                                    <td class="px-4 py-3">
+                                    <td class="px-4 py-3" style="width: 20%">{{ $value->created_at }}</td>
+                                    <td class="px-4 py-3" style="width: 35%">{{ $value->nama }}</td>
+                                    <td class="px-4 py-3" style="width: 35%">{{ $value->unit }}</td>
+                                    <td class="px-4 py-3" style="width: 5%">
                                         <button wire:click="showDetails({{ $value->uid }})"
-                                            class="px-3 py-1 bg-blue-600 text-white rounded">
+                                            class="px-3 py-1 text-blue-600 font-bold">
                                             Lihat
                                         </button>
                                     </td>
