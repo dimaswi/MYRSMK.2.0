@@ -22,14 +22,16 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
                                 placeholder="Search" required="" wire:model.live.debounce.300ms="search">
                         </div>
-                        <div class="relative w-full">
+                        <div class="relative w-full mr-2">
                             <input type="date"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
                                 placeholder="Tanggal" required="" wire:model.live.debounce.300ms="tanggal">
                         </div>
                     </div>
 
-                    <a href="{{ route('logbook_create') }}" class="flex items-center justify-center px-3 py-2 space-x-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
+
+                    <a href="{{ route('logbook_create') }}"
+                        class="flex items-center justify-center px-3 py-2 space-x text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -48,22 +50,40 @@
                                 <th scope="col" class="px-4 py-3">Tanggal</th>
                                 <th scope="col" class="px-4 py-3">Nama</th>
                                 <th scope="col" class="px-4 py-3">Unit</th>
+                                <th scope="col" class="px-4 py-3">Tugas</th>
+                                <th scope="col" class="px-4 py-3">Bukan</th>
+                                <th scope="col" class="px-4 py-3">Tambahan</th>
                                 <th scope="col" class="px-4 py-3"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($logbooks as $key => $value)
+                            @forelse ($logbooks as $key => $value)
                                 <tr class="border-b dark:border-gray-700">
-                                    <td class="px-4 py-3" style="width: 20%">{{ $value->created_at }}</td>
-                                    <td class="px-4 py-3" style="width: 35%">{{ $value->nama }}</td>
-                                    <td class="px-4 py-3" style="width: 35%">{{ $value->unit }}</td>
-                                    <td class="px-4 py-3" style="width: 5%">
+                                    <td class="px-4 py-3" style="width: 18%">{{ $value->created_at }}</td>
+                                    <td class="px-4 py-3" style="width: 25%">{{ $value->nama }}</td>
+                                    <td class="px-4 py-3" style="width: 25%">{{ $value->unit }}</td>
+                                    <td class="px-4 py-3" style="width: 4%">20%</td>
+                                    <td class="px-4 py-3" style="width: 4%">20%</td>
+                                    <td class="px-4 py-3" style="width: 4%">20%</td>
+                                    <td class="px-4 py-3" style="width: 15%">
                                         <button wire:click="showDetails({{ $value->uid }})"
                                             class="px-3 py-1 text-blue-600 font-bold">
                                             Lihat
                                         </button>
+
+                                        <button wire:click="exportExcel({{ $value->uid }})"
+                                            class="px-3 py-1 text-green-600 font-bold">
+                                            Excel
+                                        </button>
                                     </td>
-                            @endforeach
+                                </tr>
+                            @empty
+                                <tr class="border-b dark:border-gray-700">
+                                    <td colspan="4" class="font-bold text-center px-4 py-3">
+                                        <p>Data Kosong</p>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

@@ -145,7 +145,7 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
             EOF;
 
         return new FixerDefinition(
-            'All items of the given phpdoc tags must be either left-aligned or (by default) aligned vertically.',
+            'All items of the given PHPDoc tags must be either left-aligned or (by default) aligned vertically.',
             [
                 new CodeSample($code),
                 new CodeSample($code, ['align' => self::ALIGN_VERTICAL]),
@@ -258,7 +258,7 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
                 $varMax = max($varMax, \strlen($item['var']));
             }
 
-            $currTag = null;
+            $itemOpeningLine = null;
 
             // update
             foreach ($items as $j => $item) {
@@ -272,7 +272,7 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
 
                     $extraIndent = 2;
 
-                    if (\in_array($currTag, self::TAGS_WITH_NAME, true) || \in_array($currTag, self::TAGS_WITH_METHOD_SIGNATURE, true)) {
+                    if (\in_array($itemOpeningLine['tag'], self::TAGS_WITH_NAME, true) || \in_array($itemOpeningLine['tag'], self::TAGS_WITH_METHOD_SIGNATURE, true)) {
                         $extraIndent += $varMax + 1;
                     }
 
@@ -282,7 +282,8 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
 
                     $line =
                         $item['indent']
-                        .' *  '
+                        .' * '
+                        .('' !== $itemOpeningLine['hint'] ? ' ' : '')
                         .$this->getIndent(
                             $tagMax + $hintMax + $extraIndent,
                             $this->getLeftAlignedDescriptionIndent($items, $j)
@@ -294,7 +295,7 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
                     continue;
                 }
 
-                $currTag = $item['tag'];
+                $itemOpeningLine = $item;
 
                 $line =
                     $item['indent']

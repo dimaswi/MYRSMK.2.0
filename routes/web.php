@@ -36,7 +36,7 @@ Route::get('/logbook', App\Http\Livewire\Logbook\LogbookIndex::class)->name('log
 Route::get('/logbook/detail/{uid}', App\Http\Livewire\Logbook\LogbookDetail::class)->name('logbook_detail')->middleware('auth');
 Route::get('/logbook/create', App\Http\Livewire\Logbook\LogbookCreate::class)->name('logbook_create')->middleware('auth');
 
-//Admin - Clients
+//Mastering
 Route::get('/admin/users', App\Http\Livewire\Master\Users::class)->name('admin_users')->middleware('auth');
 Route::get('/admin/unit', App\Http\Livewire\Master\KepalaUnit::class)->name('admin_unit')->middleware('admin');
 Route::get('/admin/bagian', App\Http\Livewire\Master\KepalaBagian::class)->name('admin_bagian')->middleware('admin');
@@ -45,6 +45,15 @@ Route::get('/admin/permission', App\Http\Livewire\Master\Permissions::class)->na
 Route::get('/admin/jam', App\Http\Livewire\Master\JamKerja::class)->name('admin_jam_kerja')->middleware('admin');
 Route::get('/admin/ip', App\Http\Livewire\Admin\IPAddress::class)->name('admin_ip')->middleware('admin');
 Route::get('/notifications', App\Http\Livewire\CentralNotificationsLivewire::class)->name('central_notifications')->middleware('auth');
+
+//Pengadaan
+Route::get('/logistik', App\Http\Livewire\Pengadaan\PengadaanIndex::class)->name('logistik')->middleware('admin');
+
+//Stok
+Route::get('/stok', App\Http\Livewire\Stok\Logistik::class)->name('logistik')->middleware('admin');
+
+//Permintaan
+Route::get('/permintaan', App\Http\Livewire\Permintaan\Permintaan::class)->name('permintaan')->middleware('admin');
 
 Route::get('/exit', function () {
     Auth::logout();

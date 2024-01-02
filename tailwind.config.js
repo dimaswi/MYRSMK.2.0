@@ -82,6 +82,7 @@ module.exports = {
         './resources/**/*.php',
         './resources/**/*.vue',
         './resources/**/*.twig',
+        "./node_modules/flowbite/**/*.js",
     ],
 
     typography: {
@@ -100,5 +101,6 @@ module.exports = {
         require('@tailwindcss/aspect-ratio'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/line-clamp'),
+        require('flowbite/plugin'),
     ],
 };

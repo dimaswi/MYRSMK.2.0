@@ -38,7 +38,7 @@ final class PhpdocOrderByValueFixer extends AbstractFixer implements Configurabl
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
-            'Order phpdoc tags by value.',
+            'Order PHPDoc tags by value.',
             [
                 new CodeSample(
                     '<?php
@@ -194,7 +194,7 @@ final class MyTest extends \PHPUnit_Framework_TestCase
                 ->setAllowedValues([
                     new AllowedValueSubset($allowedValues),
                 ])
-                ->setNormalizer(static function (Options $options, $value): array {
+                ->setNormalizer(static function (Options $options, array $value): array {
                     $normalized = [];
 
                     foreach ($value as $annotation) {

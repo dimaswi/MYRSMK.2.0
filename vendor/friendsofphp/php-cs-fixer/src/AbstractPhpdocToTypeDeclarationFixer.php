@@ -103,7 +103,7 @@ abstract class AbstractPhpdocToTypeDeclarationFixer extends AbstractFixer implem
     }
 
     /**
-     * @return Annotation[]
+     * @return list<Annotation>
      */
     protected function getAnnotationsFromDocComment(string $name, Tokens $tokens, int $docCommentIndex): array
     {
@@ -123,7 +123,7 @@ abstract class AbstractPhpdocToTypeDeclarationFixer extends AbstractFixer implem
     }
 
     /**
-     * @return Token[]
+     * @return list<Token>
      */
     protected function createTypeDeclarationTokens(string $type, bool $isNullable): array
     {
@@ -236,7 +236,7 @@ abstract class AbstractPhpdocToTypeDeclarationFixer extends AbstractFixer implem
             $typeExpression = new TypeExpression($type, null, []);
             $commonType = $typeExpression->getCommonType();
 
-            if (!$containsOtherThanIterableType && !\in_array($commonType, ['array', 'Traversable', 'iterable'], true)) {
+            if (!$containsOtherThanIterableType && !\in_array($commonType, ['array', \Traversable::class, 'iterable'], true)) {
                 $containsOtherThanIterableType = true;
             }
             if ($isReturnType && !$containsOtherThanEmptyType && !\in_array($commonType, ['null', 'void', 'never'], true)) {

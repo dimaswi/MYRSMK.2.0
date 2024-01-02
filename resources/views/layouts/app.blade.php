@@ -28,8 +28,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-
 </head>
 
 <body x-data="{
@@ -81,16 +79,15 @@
     </div>
     @livewireScripts
     <script src="
-    https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
-    "></script>
+        https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
+        "></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('vendor/pharaonic/pharaonic.select2.min.js') }}"></script>
     <x-livewire-alert::scripts />
 </body>
 <script>
-    $(document).ready(function() {
-        $('.multi-select').select2();
-    });
+
 </script>
 
 </html>

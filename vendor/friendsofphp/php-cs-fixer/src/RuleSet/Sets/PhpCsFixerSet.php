@@ -55,6 +55,9 @@ final class PhpCsFixerSet extends AbstractRuleSetDescription
             'escape_implicit_backslashes' => true,
             'explicit_indirect_variable' => true,
             'explicit_string_variable' => true,
+            'fully_qualified_strict_types' => [
+                'import_symbols' => true,
+            ],
             'heredoc_to_nowdoc' => true,
             'method_argument_space' => [
                 'on_multiline' => 'ensure_fully_multiline',
@@ -116,6 +119,7 @@ final class PhpCsFixerSet extends AbstractRuleSetDescription
             'return_assignment' => true,
             'self_static_accessor' => true,
             'single_line_comment_style' => true,
+            'single_line_empty_body' => true,
             'single_line_throw' => false,
             'whitespace_after_comma_in_array' => ['ensure_single_space' => true],
         ];

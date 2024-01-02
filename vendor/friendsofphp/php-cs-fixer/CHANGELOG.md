@@ -3,6 +3,97 @@ CHANGELOG for PHP CS Fixer
 
 This file contains changelogs for stable releases only.
 
+Changelog for v3.45.0
+---------------------
+
+* feat: Enable symbol importing in `@PhpCsFixer` ruleset (#7629)
+* fix: NoUnneededBracesFixer - improve handling of global namespace (#7639)
+* test: run tests with "short_open_tag" enabled (#7637)
+
+Changelog for v3.44.0
+---------------------
+
+* feat: Introduce percentage bar as new default progress output (#7603)
+
+Changelog for v3.43.1
+---------------------
+
+* fix: Import only unique symbols' short names (#7635)
+
+Changelog for v3.43.0
+---------------------
+
+* chore: change base of `@Symfony` set to `@PER-CS2.0` (#7627)
+* chore: PHPUnit - allow for v10 (#7606)
+* chore: Preg - rework catching the error (#7616)
+* chore: Revert unneeded peer-dep-pin and re-gen lock file (#7618)
+* docs: drop extra note about 8.0.0 bug in README.md (#7614)
+* feat: add cast_spaces into `@PER-CS2.0` (#7625)
+* feat: Configurable phpDoc tags for FQCN processing (#7628)
+* feat: StatementIndentationFixer - introduce stick_comment_to_next_continuous_control_statement config (#7624)
+* feat: UnaryOperatorSpacesFixer - introduce only_dec_inc config (#7626)
+* fix: FullyQualifiedStrictTypesFixer - better support annotations in inline {} (#7633)
+* fix: Improve how FQCN is handled in phpDoc (#7622)
+* fix: phpdoc_align - fix multiline tag alignment issue (#7630)
+
+Changelog for v3.42.0
+---------------------
+
+* chore: aim to not rely on internal array pointer but use array_key_first (#7613)
+* chore: deprecate Token::isKeyCaseSensitive (#7599)
+* chore: deprecate Token::isKeyCaseSensitive, 2nd part (#7601)
+* chore: do not check PHP_VERSION_ID (#7602)
+* chore: FileFilterIteratorTest - more accurate type in docs (#7542)
+* chore: minor code cleanup (#7607)
+* chore: more types (#7598)
+* chore: PHPDoc key-value spacing (#7592)
+* chore: PHPUnit - run defects first (#7570)
+* chore: ProjectCodeTest - DRY on Tokens creation (#7574)
+* chore: ProjectCodeTest - prepare for symfony/console v7 (#7605)
+* chore: ProjectCodeTest::provide*ClassCases to return iterable with key for better tests execution log (#7572)
+* chore: ProjectCodeTest::testDataProvidersDeclaredReturnType - use better DataProvider to simplify test logic (#7573)
+* chore: TokensAnalyzer - string-enum for better typehinting (#7571)
+* chore: unify tests not agnostic of PHP version (#7581)
+* chore: use ::class more (#7545)
+* CI: Introduce `composer-unused` (#7536)
+* DX: add types to anonymous functions (#7561)
+* DX: Allow running smoke tests within Docker runtime (#7608)
+* DX: check fixer's options for wording (#7543)
+* DX: cleanup deprecation message (#7576)
+* DX: do not allow overriding constructor of `PHPUnit\Framework\TestCase` (#7563)
+* DX: do not import ExpectDeprecationTrait in UtilsTest (#7562)
+* DX: Enforce consistent naming in tests (#7556)
+* DX: fix checking test class extends `PhpCsFixer\Tests\TestCase` (#7567)
+* DX: make sure that exceptions in `AbstractFixerTestCase::testProperMethodNaming` are not already fixed (#7588)
+* DX: remove recursion from AbstractIntegrationTestCase::testIntegration (#7577)
+* DX: remove `PhpUnitNamespacedFixerTest::testClassIsFixed` (#7564)
+* DX: remove `symfony/phpunit-bridge` (#7578)
+* DX: replace fixture classes with anonymous ones (#7533)
+* DX: Unify Docker mount points and paths (#7549)
+* DX: unify fixer's test method names - quick wins (#7584)
+* DX: unify tests for casing fixers (#7558)
+* DX: use anonymous function over concrete classes (#7553)
+* feat(EXPERIMENTAL): ClassKeywordFixer (#2918)
+* feat(EXPERIMENTAL): ClassKeywordFixer, part 2 (#7550)
+* feat(PhpdocToCommentFixer): Add option to handle return as valid docblock usage (#7401) (#7402)
+* feat: Ability to import FQCNs found during analysis (#7597)
+* feat: add phpDoc support for `fully_qualified_strict_types` fixer (#5620)
+* feat: Handle deprecated rule sets similarly to deprecated fixers (#7288)
+* feat: PhpUnitTestCaseStaticMethodCallsFixer - cover PHPUnit v10 methods (#7604)
+* feat: Support more FQCNs cases in `fully_qualified_strict_types` (#7459)
+* fix: AbstractFixerTestCase - fix checking for correct casing (#7540)
+* fix: Better OS detection in integration tests (#7547)
+* fix: NativeTypeDeclarationCasingFixe - handle static property without type (#7589)
+* test: AutoReview - unify data provider returns (#7544)
+* test: check to have DataProviders code agnostic of PHP version (#7575)
+
+Changelog for v3.41.1
+---------------------
+
+* DX: Change `@testWith` to `@dataProvider` (#7535)
+* DX: Introduce Markdownlint (#7534)
+* fix: NativeTypeDeclarationCasingFixer - do not crash on `var` keyword (#7538)
+
 Changelog for v3.41.0
 ---------------------
 
@@ -920,7 +1011,7 @@ Changelog for v3.5.0
 * bug #6165 DeclareEqualNormalizeFixer - fix for declare having multiple directives (kubawerlos)
 * bug #6170 NonPrintableCharacterFixer - fix for string in single quotes, having non-breaking space, linebreak, and single quote inside (kubawerlos)
 * bug #6181 UseTransformer - Trait import in enum fix (PHP8.1) (SpacePossum)
-* bug #6188 PhpdocTo(Param|Property|Return)TypeFixer - fix for type intersections (kubawerlos)
+* bug #6188 `PhpdocTo(Param|Property|Return)TypeFixer` - fix for type intersections (kubawerlos)
 * bug #6202 SquareBraceTransformer - fix for destructing square brace after double arrow (kubawerlos)
 * bug #6209 OrderedClassElementsFixer - PHP8.0 support abstract private methods in traits (SpacePossum)
 * bug #6224 ArgumentsAnalyzer - support PHP8.1 readonly (SpacePossum)
@@ -976,7 +1067,7 @@ Changelog for v3.4.0
 * minor #6109 Add return type to `DummyTestSplFileInfo::getRealPath()` (derrabus)
 * minor #6115 Remove PHP 7.2 polyfill (derrabus)
 * minor #6116 CI: remove installation of mbstring polyfill in build script, it's required dependency now (keradus)
-* minor #6119 OrderedClassElementsFixer - PHPUnit assert(Pre|Post)Conditions methods support (meyerbaptiste)
+* minor #6119 OrderedClassElementsFixer - PHPUnit `assert(Pre|Post)Conditions` methods support (meyerbaptiste)
 * minor #6121 Use Tokens::ensureWhitespaceAtIndex to simplify code (kubawerlos)
 * minor #6127 Remove 2nd parameter to XdebugHandler constructor (phil-davis)
 * minor #6129 clean ups (SpacePossum)
@@ -1099,7 +1190,7 @@ Changelog for v3.2.0
 * minor #6029 PhpUnitDedicateAssertFixer - add "assertStringContainsString" and "as… (SpacePossum)
 * minor #6030 SingleSpaceAfterConstructFixer - Add `switch` support (SpacePossum)
 * minor #6033 ArgumentsAnalyzerTest - add more tests (SpacePossum)
-* minor #6034 7.0|7.1 - cleanup tests (SpacePossum)
+* minor #6034 Cleanup tests for PHP 7.0 and 7.1 (SpacePossum)
 * minor #6035 Documentation generation split up and add list. (SpacePossum)
 * minor #6048 Fix "can not" spelling (mvorisek)
 
@@ -1655,7 +1746,6 @@ Changelog for v2.17.0
 * minor #5284 PHP8 - Attribute support (SpacePossum)
 * minor #5323 NoUselessSprintfFixer - Fix test on PHP5.6 (SpacePossum)
 * minor #5326 DX: relax composer requirements to not block installation under PHP v8, support for PHP v8 is not yet ready (keradus)
-
 
 Changelog for v2.16.10
 ----------------------
@@ -3087,7 +3177,7 @@ Changelog for v2.10.3
 * minor #3484 Create Tokens::findBlockStart (ntzm)
 * minor #3512 Add missing array typehints (ntzm)
 * minor #3513 Making AppVeyor happy (kubawerlos)
-* minor #3516 Use null|type instead of ?type in PHPDocs (ntzm)
+* minor #3516 Use `null|type` instead of `?type` in PHPDocs (ntzm)
 * minor #3518 FixerFactoryTest - Test each priority test file is listed as test (SpacePossum)
 * minor #3519 Fix typo (SpacePossum)
 * minor #3520 Fix typos: ran vs. run (SpacePossum)
@@ -3272,7 +3362,7 @@ Changelog for v2.8.1
 
 * bug #3199 TokensAnalyzer - getClassyElements (SpacePossum)
 * bug #3208 BracesFixer - Fix for instantiation in control structures (julienfalque, SpacePossum)
-* bug #3215 BinaryOperatorSpacesFixer - Fix spaces around multiple exception catching (|) (ntzm)
+* bug #3215 BinaryOperatorSpacesFixer - Fix spaces around multiple exception catching (ntzm)
 * bug #3216 AbstractLinesBeforeNamespaceFixer - add min. and max. option, not only single target count (SpacePossum)
 * bug #3217 TokenizerLinter - fix lack of linting when code is cached (SpacePossum, keradus)
 * minor #3200 Skip slow test when Xdebug is loaded (julienfalque)
@@ -3319,7 +3409,7 @@ Changelog for v2.7.4
 
 * bug #3199 TokensAnalyzer - getClassyElements (SpacePossum)
 * bug #3208 BracesFixer - Fix for instantiation in control structures (julienfalque, SpacePossum)
-* bug #3215 BinaryOperatorSpacesFixer - Fix spaces around multiple exception catching (|) (ntzm)
+* bug #3215 BinaryOperatorSpacesFixer - Fix spaces around multiple exception catching (ntzm)
 * bug #3216 AbstractLinesBeforeNamespaceFixer - add min. and max. option, not only single target count (SpacePossum)
 * bug #3217 TokenizerLinter - fix lack of linting when code is cached (SpacePossum, keradus)
 * minor #3200 Skip slow test when Xdebug is loaded (julienfalque)
@@ -3730,7 +3820,7 @@ Changelog for v2.2.17
 * minor #3435 Add tests for general_phpdoc_annotation_remove (BackEndTea)
 * minor #3484 Create Tokens::findBlockStart (ntzm)
 * minor #3512 Add missing array typehints (ntzm)
-* minor #3516 Use null|type instead of ?type in PHPDocs (ntzm)
+* minor #3516 Use `null|type` instead of `?type` in PHPDocs (ntzm)
 * minor #3518 FixerFactoryTest - Test each priority test file is listed as test (SpacePossum)
 * minor #3520 Fix typos: ran vs. run (SpacePossum)
 * minor #3521 Use HTTPS (carusogabriel)
@@ -3823,7 +3913,7 @@ Changelog for v2.2.10
 
 * bug #3199 TokensAnalyzer - getClassyElements (SpacePossum)
 * bug #3208 BracesFixer - Fix for instantiation in control structures (julienfalque, SpacePossum)
-* bug #3215 BinaryOperatorSpacesFixer - Fix spaces around multiple exception catching (|) (ntzm)
+* bug #3215 BinaryOperatorSpacesFixer - Fix spaces around multiple exception catching (ntzm)
 * bug #3216 AbstractLinesBeforeNamespaceFixer - add min. and max. option, not only single target count (SpacePossum)
 * bug #3217 TokenizerLinter - fix lack of linting when code is cached (SpacePossum, keradus)
 * minor #3200 Skip slow test when Xdebug is loaded (julienfalque)
@@ -4018,7 +4108,9 @@ Changelog for v2.2.2
 --------------------
 
 Warning, this release breaks BC due to introduction of:
+
 * minor #2554 Add short diff. output format (SpacePossum, keradus)
+
 That PR was reverted in v2.2.3, which should be used instead of v2.2.2.
 
 * bug #2545 RuleSet - change resolvement (SpacePossum)
@@ -4448,7 +4540,7 @@ Changelog for v2.0.0
 * minor #2318 *TestCase - Reduce visibility of setUp() (localheinz)
 * minor #2319 Code grooming (keradus)
 * minor #2322 DX: use whitemessy aware assertion (keradus)
-* minor #2324 Echo|Print*Fixer - unify printing fixers (SpacePossum, keradus)
+* minor #2324 `Echo|Print*Fixer` - unify printing fixers (SpacePossum, keradus)
 * minor #2337 Normalize rule naming (keradus)
 * minor #2338 Drop hacks for unsupported HHVM (keradus)
 * minor #2339 Add some Fixer descriptions (SpacePossum, keradus)
